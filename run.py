@@ -66,7 +66,7 @@ class Result:
         data_dict = self._res_to_dict()
         file_path = 'grade.json'
 
-        with open('result.json', 'w', encoding='UTF-8') as file:
+        with open(file_path, 'w', encoding='UTF-8') as file:
             json.dump(data_dict, file)
 
 
