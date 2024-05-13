@@ -66,7 +66,7 @@ class Result:
         Сохраняет результат моделирования в формате JSON.
         """
         data_dict = self._res_to_dict()
-        file_path = 'result.json'
+        file_path = 'grades.json'
 
         if not os.path.exists(file_path):
             with open(file_path, 'w') as file:
