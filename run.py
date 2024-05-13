@@ -45,12 +45,10 @@ class Result:
 
     Attributes:
         result (Union[str, int]): Результат моделирования.
-        name (str): Имя пользователя.
     """
 
-    def __init__(self, result: Union[str, float], name: str):
+    def __init__(self, result: Union[str, float]):
         self.result = result
-        self.name = name
 
     def _res_to_dict(self) -> dict:
         """
@@ -59,24 +57,17 @@ class Result:
         Returns:
             dict: Словарь с результатом моделирования.
         """
-        return {self.name: self.result}
+        return {'grade': self.result}
 
     def res_to_json(self) -> None:
         """
         Сохраняет результат моделирования в формате JSON.
         """
         data_dict = self._res_to_dict()
-        file_path = 'grades.json'
+        file_path = 'grade.json'
 
-        if not os.path.exists(file_path):
-            with open(file_path, 'w') as file:
-                json.dump({}, file)
-
-        with open('result.json', 'r', encoding='UTF-8') as file:
-            json_data = json.load(file)
-        json_data.update(data_dict)
         with open('result.json', 'w', encoding='UTF-8') as file:
-            json.dump(json_data, file, indent=4, ensure_ascii=False)
+            json.dump(data_dict, file)
 
 
 class Chair:
@@ -161,8 +152,7 @@ class Chair:
 
 if __name__ == '__main__':
     chair = Chair(40, 60, 80, 2, 1000, 2, 2, 0.1)
-    if type(task.student) is str and type(task.front_legs_distance) in (float, int) and type(task.back_legs_distance) in (int, float):
-        name = task.student
+    if type(task.front_legs_distance) in (float, int) and type(task.back_legs_distance) in (int, float):
         way_1, way_2 = task.front_legs_distance, task.back_legs_distance
         try:
             res = chair.move(way_1, way_2)
@@ -172,10 +162,11 @@ if __name__ == '__main__':
                 answer = 4
             else:
                 answer = 3
-            result = Result(answer, name)
+            result = Result(answer)
             result.res_to_json()
         except Exception as e:
             result = Result(str(e), name)
             result.res_to_json()
     else:
-        print('Неверные входные данные')
+         result = Result('Неверные входные данные')
+            result.res_to_json()
