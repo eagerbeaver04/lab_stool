@@ -165,7 +165,7 @@ if __name__ == '__main__':
             result = Result(answer)
             result.res_to_json()
         except Exception as e:
-            result = Result(str(e))
+            result = Result(3)
             result.res_to_json()
     else:
          result = Result('Неверные входные данные')
