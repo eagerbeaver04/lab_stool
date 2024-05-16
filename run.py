@@ -156,9 +156,9 @@ if __name__ == '__main__':
         way_1, way_2 = task.front_legs_distance, task.back_legs_distance
         try:
             res = chair.move(way_1, way_2)
-            if res >= 3733.022748825491:
+            if res >= 3730:
                 answer = 5
-            elif res > 0.99 * 3733.022748825491:
+            elif res > 3650:
                 answer = 4
             else:
                 answer = 3
